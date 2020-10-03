@@ -156,6 +156,7 @@ import (
 	_ "github.com/influxdata/telegraf/plugins/inputs/socket_listener"
 	_ "github.com/influxdata/telegraf/plugins/inputs/solr"
 	_ "github.com/influxdata/telegraf/plugins/inputs/sqlserver"
+	_ "github.com/influxdata/telegraf/plugins/inputs/sqlserver_extended"
 	_ "github.com/influxdata/telegraf/plugins/inputs/stackdriver"
 	_ "github.com/influxdata/telegraf/plugins/inputs/statsd"
 	_ "github.com/influxdata/telegraf/plugins/inputs/suricata"
