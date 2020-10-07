@@ -10,12 +10,15 @@
   - [#7920](https://github.com/influxdata/telegraf/pull/7920) `inputs.rabbitmq` remove deprecated healthcheck
   - [#7932](https://github.com/influxdata/telegraf/pull/7932) Support for AWS Cloudwatch Alarms #7931
   - [#7953](https://github.com/influxdata/telegraf/pull/7953) Add details to connect to InfluxDB OSS 2 and Cloud 2
+  - [#7976](https://github.com/influxdata/telegraf/pull/7976) `processors.starlark` add pivot example for starlark processor
   - [#7980](https://github.com/influxdata/telegraf/pull/7980) `processors.starlark` add example input/outputs to starlark examples
   - [#8054](https://github.com/influxdata/telegraf/pull/8054) add guidelines run to external plugins with execd
   - [#8198](https://github.com/influxdata/telegraf/pull/8198) `inputs.influxdb_v2_listener` change default influxdb port from 9999 to 8086 to match OSS 2.0 release
 
 #### Features
 
+  - [#7134](https://github.com/influxdata/telegraf/pull/7134) `outputs.application_insights` Added the ability to set the endpoint url
+  - [#7808](https://github.com/influxdata/telegraf/pull/7808) `inputs.sqlserver` added new counter - Lock Timeouts (timeout > 0)/sec
   - [#7814](https://github.com/influxdata/telegraf/pull/7814) `agent` Send metrics in FIFO order
   - [#7869](https://github.com/influxdata/telegraf/pull/7869) `inputs.modbus` extend support of fixed point values on input
   - [#7870](https://github.com/influxdata/telegraf/pull/7870) `inputs.mongodb` Added new metric "pages written from cache"
@@ -27,6 +30,10 @@
   - [#8019](https://github.com/influxdata/telegraf/pull/8019) `outputs.elasticsearch` added force_document_id option to ES output enable resend data and avoiding duplicated ES documents
   - [#8025](https://github.com/influxdata/telegraf/pull/8025) `inputs.aerospike` Add set, and histogram reporting to aerospike telegraf plugin
   - [#8082](https://github.com/influxdata/telegraf/pull/8082) `inputs.snmp` Add agent host tag configuration option
+  - [#7986](https://github.com/influxdata/telegraf/pull/7986) `inputs.http_listener_v2` make http header tags case insensitive
+  - [#8018](https://github.com/influxdata/telegraf/pull/8018) `processors.ifname` Add addTag debugging in ifname plugin
+  - [#8019](https://github.com/influxdata/telegraf/pull/8019) `outputs.elasticsearch` added force_document_id option to ES output enable resend data and avoiding duplicated ES documents
+  - [#8025](https://github.com/influxdata/telegraf/pull/8025) `inputs.aerospike` Add set, and histogram reporting to aerospike telegraf plugin
   - [#8113](https://github.com/influxdata/telegraf/pull/8113) `inputs.smart` Add more missing NVMe attributes to smart plugin
   - [#8120](https://github.com/influxdata/telegraf/pull/8120) `inputs.sqlserver` Added more performance counters to SqlServer input plugin
   - [#8127](https://github.com/influxdata/telegraf/pull/8127) `agent` Sort plugin name lists for output
@@ -53,6 +60,21 @@
   - [#8005](https://github.com/influxdata/telegraf/pull/8005) Fix docker-image make target
   - [#8039](https://github.com/influxdata/telegraf/pull/8039) `serializers.splunkmetric` Remove Event field as it is causing issues with pre-trained source types
   - [#8048](https://github.com/influxdata/telegraf/pull/8048) `inputs.jenkins` Multiple escaping occurs on Jenkins URLs at certain folder depth
+  - [#7861](https://github.com/influxdata/telegraf/pull/7861) `inputs.ping` Fix Ping Input plugin for FreeBSD's ping6
+  - [#7867](https://github.com/influxdata/telegraf/pull/7867) `inputs.execd` fix issue with execd restart_delay being ignored
+  - [#7869](https://github.com/influxdata/telegraf/pull/7869) `inputs.modbus` Fix/extend support of fixed point values on input (modbus plugin)
+  - [#7872](https://github.com/influxdata/telegraf/pull/7872) `inputs.gnmi` Recv next message after send returns EOF
+  - [#7877](https://github.com/influxdata/telegraf/pull/7877) Fix arch name in deb/rpm builds
+  - [#7908](https://github.com/influxdata/telegraf/pull/7908) `outputs.opentsdb` Skip NaN and Inf values (JSON does not support)
+  - [#7909](https://github.com/influxdata/telegraf/pull/7909) fixes issue with rpm /var/log/telegraf permissions
+  - [#7918](https://github.com/influxdata/telegraf/pull/7918) `inputs.net` fix broken link to proc.c
+  - [#7927](https://github.com/influxdata/telegraf/pull/7927) `inputs.tail` Fix tail following on EOF
+  - [#7996](https://github.com/influxdata/telegraf/pull/7996) `common.shim` fix issue with shim use of config.Duration
+  - [#8005](https://github.com/influxdata/telegraf/pull/8005) Fix docker-image make target
+  - [#8006](https://github.com/influxdata/telegraf/pull/8006) `inputs.eventhub_consumer` Fix string to int conversion in eventhub consumer
+  - [#8026](https://github.com/influxdata/telegraf/pull/8026) `inputs.vsphere` vSphere Fixed missing clustername issue 7878
+  - [#8039](https://github.com/influxdata/telegraf/pull/8039) `serializers.splunkmetric` Remove Event field as it is causing issues with pre-trained source types
+  - [#8052](https://github.com/influxdata/telegraf/pull/8052) `common.shim` fix bug in shim logger affecting AddError
   - [#8071](https://github.com/influxdata/telegraf/pull/8071) `inputs.kubernetes` add missing error check for HTTP req failure
   - [#8145](https://github.com/influxdata/telegraf/pull/8145) `processors.execd` Increased the maximum serialized metric size in line protocol
   - [#8159](https://github.com/influxdata/telegraf/pull/8159) `outputs.dynatrace` Dynatrace Output: change handling of monotonic counters
@@ -79,6 +101,21 @@
 
   - [dynatrace](/plugins/outputs/dynatrace/README.md) Dynatrace output plugin - Contributed by @thschue
   - [sumologic](/plugins/outputs/sumologic/README.md) Sumo Logic output plugin - Contributed by @pmalek-sumo
+
+#### New Input Plugins
+
+  - [influxdb_v2_listener](/plugins/inputs/influxdb_v2_listener/README.md) Influxdb v2 listener
+  - [intel_rdt](/plugins/inputs/intel_rdt/README.md) New input plugin for Intel RDT (Intel Resource Director Technology)
+  - [nsd](/plugins/inputs/nsd/README.md) add nsd input plugin
+  - [opcua](/plugins/inputs/opcua/README.md) Add OPC UA input plugin
+  - [proxmox](/plugins/inputs/proxmox/README.md) Proxmox plugin
+  - [ras](/plugins/inputs/ras/README.md) New input plugin for RAS (Reliability, Availability and Serviceability)
+  - [win_eventlog](/plugins/inputs/win_eventlog/README.md) Windows eventlog input plugin
+
+#### New Output Plugins
+
+  - [dynatrace](/plugins/outputs/dynatrace/README.md) Dynatrace output plugin
+  - [sumologic](/plugins/outputs/dynatrace/README.md) Sumo Logic output plugin
 
 #### New External Plugins
 
