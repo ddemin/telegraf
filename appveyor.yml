@@ -26,6 +26,8 @@ install:
 build_script:
   - make deps
   - make telegraf
+  - set GOOS=linux&& set GOARCH=amd64&& make deps
+  - set GOOS=linux&& set GOARCH=amd64&& make telegraf
 
 test_script:
   - make check
@@ -33,3 +35,4 @@ test_script:
 
 artifacts:
   - path: telegraf.exe
+  - path: telegraf
