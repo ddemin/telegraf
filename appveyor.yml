@@ -25,6 +25,11 @@ install:
 
 build_script:
   - make deps
+  - set GOARCH=amd64
+  - set GOOS=linux
+  - make telegraf
+  - rm -rf build
+  - set GOOS=windows
   - make telegraf
 
 test_script:
@@ -33,3 +38,7 @@ test_script:
 
 artifacts:
   - path: telegraf.exe
+    name: windows_telegraf
+
+  - path: telegraf
+    name: linux_telegraf
